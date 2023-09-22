@@ -15,9 +15,6 @@
   $: console.log(`${details?.image} changed ! loading: ${loading}`);
 </script>
 
-<div class="relative">
-  {#if !appIsLoading || loading}
-    <Spinner />
-  {/if}
+<div class="h-[30vh]">
   <Image src={details?.image ?? defaultImg} alt={`card of ${details?.value}${details?.suit}`} on:loading={updateLoadingState} />
 </div>

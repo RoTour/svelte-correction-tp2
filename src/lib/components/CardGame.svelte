@@ -3,6 +3,7 @@
   import Button from "../common/Button.svelte";
   import Card from "../common/Card.svelte";
   import { appIsLoading } from "../store/LoadingState";
+	import { computerScored, playerScored, score } from "../store/ScoreState";
   import type { CardDetails } from "../types/CardDetails";
   import WinnerDisplay from "./WinnerDisplay.svelte";
 
@@ -26,14 +27,24 @@
       computerValue: computerCard.value,
       winner,
     });
+    if (winner === "player1") playerScored();
+    if (winner === "player2") computerScored();
     appIsLoading.set(false);
   };
 </script>
 
-<main class="flex items-center gap-8 m-auto">
-  <Card details={playerCard} />
-  <Button on:click={drawCard} classes="h-[min-content]">Draw card</Button>
-  <Card details={computerCard} />
+<main class="flex flex-col items-center gap-8 m-auto">
+  <div class="flex items-center gap-8">
+    <div>
+      <Card details={playerCard} />
+      <p>Score: {$score.player}</p>
+    </div>
+    <Button on:click={drawCard} classes="h-[min-content]">Draw card</Button>
+    <div>
+      <Card details={computerCard} />
+      <p>Score: {$score.computer}</p>
+    </div>
+  </div>
   {#if winner}
     {#key winner}
       <WinnerDisplay value={winner} />

@@ -6,4 +6,4 @@
   const text = value === "player1" ? "You win!" : value === "player2" ? "You lose!" : "Draw!";
 </script>
 
-<p class="font-bold">{text}</p>
+<p class="font-bold text-8xl">{text}</p>

@@ -20,7 +20,9 @@
 {#await fetchDeckIdPromise}
 	<Spinner/>
 {:then}
+<div class="p-8">
   <CardGame {deckId}/>
+</div>
 {:catch}
 	<p>Error: Couldnt fetch api</p>
 {/await}
